@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">project1</string>
+    <array name="countries">
+        <item>Norway</item>
+        <item>Germany</item>
+        <item>USA</item>
+        <item>Turkey</item>
+        <item>Poland</item>
+        <item>UAE</item>
+        <item>Netherlands</item>
+        <item>Italy</item>
+        <item>Austria</item>
+    </array>
+</resources>
