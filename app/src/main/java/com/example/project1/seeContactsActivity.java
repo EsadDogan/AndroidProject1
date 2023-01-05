@@ -1,12 +1,18 @@
 package com.example.project1;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,30 +37,36 @@ public class seeContactsActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private RequestQueue mQueue;
     ArrayList<Contacts> contacts = new ArrayList<>();
+    private final static String TAG = "seeContactActivity";
+    Contacts_RecyclerViewAdapter adapter;
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_contacts);
+        mQueue = Volley.newRequestQueue(this);
 
 
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        //RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         jsonParse();
 
-        Contacts_RecyclerViewAdapter adapter = new Contacts_RecyclerViewAdapter(this,contacts);
+
+         adapter = new Contacts_RecyclerViewAdapter(this,contacts);
 
 
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setAdapter(adapter);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.contacts);
 
-        mQueue = Volley.newRequestQueue(this);
+
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -64,6 +76,9 @@ public class seeContactsActivity extends AppCompatActivity {
 
                 case R.id.home:
                     intent = new Intent(seeContactsActivity.this, homeActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name","sadad");
+                    intent.putExtras(bundle);
                     startActivity(intent);
                     break;
 
@@ -83,6 +98,8 @@ public class seeContactsActivity extends AppCompatActivity {
 
 
     }
+
+
 
     public void jsonParse(){
 
@@ -111,9 +128,10 @@ public class seeContactsActivity extends AppCompatActivity {
                         contacts.add(new Contacts(firstName,lastname,age,mail));
 
                     }
-
+                  adapter.notifyDataSetChanged();
 
                 } catch (JSONException e) {
+                    Log.d(TAG, "onResponse: json hata");
                     e.printStackTrace();
                 }
             }

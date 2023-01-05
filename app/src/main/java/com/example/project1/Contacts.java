@@ -3,14 +3,36 @@ package com.example.project1;
 public class Contacts {
 
     private String name,lastName, urlImage,mail;
-    private int age;
+    private int age,id;
 
-    public Contacts(String name, String lastName, String urlImage, int age,String mail) {
+    public Contacts(String name, String lastName, String urlImage, int age,int id,String mail) {
         this.name = name;
         this.lastName = lastName;
         this.urlImage = urlImage;
         this.age = age;
+        this.id = id;
         this.mail = mail;
+    }
+
+
+
+    public Contacts(String name, String lastName, int age, String mail) {
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.mail = mail;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getIdAsString(){
+        return String.valueOf(id);
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMail() {
@@ -18,13 +40,6 @@ public class Contacts {
     }
 
     public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public Contacts(String name, String lastName, int age, String mail) {
-        this.name = name;
-        this.lastName = lastName;
-        this.age = age;
         this.mail = mail;
     }
 

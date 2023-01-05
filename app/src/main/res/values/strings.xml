@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">project1</string>
+    <string name="app_name">Simple Contact</string>
     <array name="countries">
         <item>Norway</item>
         <item>Germany</item>
@@ -11,4 +11,6 @@
         <item>Italy</item>
         <item>Austria</item>
     </array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

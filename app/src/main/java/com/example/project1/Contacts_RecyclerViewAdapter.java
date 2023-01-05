@@ -1,6 +1,7 @@
 package com.example.project1;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.example.project1.home.ContactsFragment;
+import com.example.project1.home.SeeContactDetailsFragment;
 
 import java.util.ArrayList;
 
@@ -17,6 +26,7 @@ public class Contacts_RecyclerViewAdapter extends RecyclerView.Adapter<Contacts_
 
     Context context;
     ArrayList<Contacts> contacts;
+    public static String itemId;
 
     /**
      * Constructor which holds the data from activity
@@ -50,6 +60,30 @@ public class Contacts_RecyclerViewAdapter extends RecyclerView.Adapter<Contacts_
         String nameLastname = contacts.get(position).getName() +" "+ contacts.get(position).getLastName();
         holder.txtNameSurname.setText(nameLastname);
         holder.txtMail.setText(contacts.get(position).getMail());
+        holder.txtUserId.setText(contacts.get(position).getIdAsString());
+
+        Glide.with(context)
+                .asBitmap()
+                .load(contacts.get(position).getUrlImage()).into(holder.imageView);
+
+
+        holder.itemContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                 itemId = contacts.get(holder.getAdapterPosition()).getIdAsString();
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+
+                FragmentManager manager2 = activity.getSupportFragmentManager();
+                manager2.beginTransaction()
+                        .replace(R.id.myFrameLay, new SeeContactDetailsFragment(), SeeContactDetailsFragment.TAG)
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
     }
 
     @Override
@@ -64,7 +98,8 @@ public class Contacts_RecyclerViewAdapter extends RecyclerView.Adapter<Contacts_
         // kinda like in the onCreate method
 
         ImageView imageView;
-        TextView txtNameSurname, txtMail;
+        TextView txtNameSurname, txtMail,txtUserId;
+        CardView itemContact;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +107,8 @@ public class Contacts_RecyclerViewAdapter extends RecyclerView.Adapter<Contacts_
             imageView = itemView.findViewById(R.id.image);
             txtNameSurname = itemView.findViewById(R.id.txtNameSurname);
             txtMail = itemView.findViewById(R.id.txtEmail);
+            txtUserId = itemView.findViewById(R.id.txtUserId);
+            itemContact = itemView.findViewById(R.id.itemContact);
 
         }
     }

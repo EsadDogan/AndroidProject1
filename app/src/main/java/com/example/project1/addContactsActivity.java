@@ -38,58 +38,12 @@ public class addContactsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contacts);
 
-        btnImage = findViewById(R.id.btnPickImage);
-        btnRegister = findViewById(R.id.btnRegister);
-        lblName = findViewById(R.id.lblName);
-        lblEmail = findViewById(R.id.lblEmaıl);
-        lblSurname = findViewById(R.id.lblSurname);
-        lblPassword = findViewById(R.id.lblPassword);
-        lblPasswordAgain = findViewById(R.id.lblPasswordAgain);
-        CorrectChbRequest = findViewById(R.id.CorrectChbRequest);
-        CorrectPasswordAgainRequest = findViewById(R.id.CorrectPasswordAgainRequest);
-        CorrectPasswordRequest = findViewById(R.id.CorrectPasswordRequest);
-        CorrectEmailRequest = findViewById(R.id.CorrectEmailRequest);
-        CorrectSurNameRequest = findViewById(R.id.CorrectSurNameRequest);
-        CorrectNameRequest = findViewById(R.id.CorrectNameRequest);
-        parent = findViewById(R.id.parent);
-        checkBox = findViewById(R.id.checkboxAgree);
-        radioMale = findViewById(R.id.radioMale);
-        radioFemale = findViewById(R.id.radioFemale);
-        radioOther = findViewById(R.id.radioOther);
-        screen = findViewById(R.id.screen);
-        bottomNavigationView  = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.add);
-
-        btnImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(addContactsActivity.this, "How you dare to change Master Yoda's picture!! Go away!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (correction()) {
-
-                    if(checkBox.isChecked())
-                    {
-                        showSnackBar();
-                    }
-
-                    else{
-
-                        Toast.makeText(addContactsActivity.this, "You have to check the agreement to proceed.", Toast.LENGTH_SHORT).show();
 
 
-                    }
 
 
-                }
-
-            }
-        });
 
        bottomNavigationView.setOnItemSelectedListener(item -> {
 
